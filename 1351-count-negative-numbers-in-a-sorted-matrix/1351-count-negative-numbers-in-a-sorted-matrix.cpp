@@ -7,7 +7,7 @@ public:
         int ans=0;
         while(i>=0 && j<n){
             if(grid[i][j]<0){
-                ans+=(m-j);
+                ans+=(n-j);
                 i--;
             }
             else

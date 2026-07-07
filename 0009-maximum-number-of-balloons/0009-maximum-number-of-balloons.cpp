@@ -13,7 +13,8 @@ public:
         need['n']=1;
         int res=INT_MAX;
         for(auto c:need){
-            res=min(res,have[c.first]/c.second);
+            int times=have[c.first]/c.second;
+            res=min(res,times);
         }
         return res;
     }

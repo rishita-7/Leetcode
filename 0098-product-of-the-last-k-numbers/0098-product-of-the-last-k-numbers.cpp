@@ -12,7 +12,7 @@ public:
     int getProduct(int k) {
         int prod=1;
         int n=v.size();
-        for(int i=(n-1);i>=(n-k);i--){
+        for(int i=n-1;i>=n-k;i--){
             prod=prod*v[i];
         }
         return prod;

@@ -8,6 +8,7 @@ public:
             else if(c!='*')
                 st.push(c);
         }
+        
         string res="";
         while(!st.empty()){
             char c=st.top();

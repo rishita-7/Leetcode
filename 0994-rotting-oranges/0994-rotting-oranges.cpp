@@ -36,7 +36,7 @@ public:
                     int col=c+y[k];
                     if(isValid(row,col,m,n) && grid[row][col]==1){
                         fresh--;
-                        grid[row][col]=-2;
+                        grid[row][col]=-1;
                         q.push({row,col});
                     }
                 }

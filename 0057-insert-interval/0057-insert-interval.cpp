@@ -1,20 +1,21 @@
 class Solution {
 public:
     vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
-        intervals.push_back(newInterval);
-        sort(intervals.begin(),intervals.end());
-        /*
+        //intervals.push_back(newInterval);
+        //sort(intervals.begin(),intervals.end());
+        
         vector<vector<int>>interval;
+        bool flag=false;
         for(auto a:intervals){
-            if(a<newInterval)
-                interval.push_back(a);
-            else{
+            if(flag==false && a[0]>=newInterval[0]){
                 interval.push_back(newInterval);
-                interval.push_back(a);
+                flag=true;
             }
+            interval.push_back(a);
         }
+        if(flag==false)
+            interval.push_back(newInterval);
         intervals=interval;
-        */
         vector<vector<int>> res;
         int start1=intervals[0][0];
         int end1=intervals[0][1];

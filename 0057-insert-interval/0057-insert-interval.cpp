@@ -3,6 +3,18 @@ public:
     vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
         intervals.push_back(newInterval);
         sort(intervals.begin(),intervals.end());
+        /*
+        vector<vector<int>>interval;
+        for(auto a:intervals){
+            if(a<newInterval)
+                interval.push_back(a);
+            else{
+                interval.push_back(newInterval);
+                interval.push_back(a);
+            }
+        }
+        intervals=interval;
+        */
         vector<vector<int>> res;
         int start1=intervals[0][0];
         int end1=intervals[0][1];

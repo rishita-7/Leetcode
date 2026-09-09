@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    int max_sum=INT_MIN;
+    int max_sum=0;
     vector<int> helper(TreeNode* node){
         if(!node){
             return {1,INT_MAX,INT_MIN,0};
@@ -39,6 +39,6 @@ public:
     }
     int maxSumBST(TreeNode* root) {
         helper(root);
-        return max(0,max_sum);
+        return max_sum;
     }
 };

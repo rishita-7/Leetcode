@@ -12,17 +12,17 @@
 class Solution {
 public:
     int moves=0;
-    int distributeCoins(TreeNode* root) {
-       dfs(root);
-       return moves;
+    int helper(TreeNode* node){
+        if (!node)
+            return 0;
+        int left=helper(node->left);
+        int right=helper(node->right);
+        int extra=node->val + left + right -1;
+        moves+=abs(extra);
+        return extra;
     }
-    int dfs(TreeNode* node){
-        if(node==nullptr)
-           return 0;
-        int left=dfs(node->left);
-        int right=dfs(node->right);
-        int coins=node->val + left + right -1;
-        moves+=abs(coins);
-        return coins;
+    int distributeCoins(TreeNode* root) {
+        helper(root);
+        return moves;
     }
 };

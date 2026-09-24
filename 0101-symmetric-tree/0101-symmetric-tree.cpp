@@ -21,8 +21,8 @@ public:
         return isSame(p->left,q->right) && isSame(p->right, q->left);
     }
     bool isSymmetric(TreeNode* root) {
-        if (!root)
-            return true;
+        //if (!root)
+        //  return true;
         return isSame(root->left,root->right);
     }
 };

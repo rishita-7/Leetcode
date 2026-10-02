@@ -5,13 +5,13 @@ public:
         vector<int>nextGreater(n,-1);
         stack<int>st;
         for(int i=2*n-1;i>=0;i--){
-            while(!st.empty() && st.top()<=nums[i%n])
+            while(!st.empty() && nums[st.top()]<=nums[i%n])
                 st.pop();
             if(i<n && st.empty())
                 nextGreater[i]=-1;
             else if(i<n && !st.empty())
-                nextGreater[i]=st.top();
-            st.push(nums[i%n]);
+                nextGreater[i]=nums[st.top()];
+            st.push(i%n);
         }
         return nextGreater;
     }

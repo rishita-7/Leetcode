@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    vector<int> elements;
+    vector<int>elements;
     void inOrder(TreeNode* root){
         if(!root)
             return;
@@ -21,11 +21,12 @@ public:
     }
     bool findTarget(TreeNode* root, int k) {
         inOrder(root);
-        int left=0,right=elements.size()-1;
+        int left=0;
+        int right=elements.size()-1;
         while(left<right){
-            if(elements[left]+elements[right] == k)
+            if(elements[left] + elements[right] ==k)
                 return true;
-            if(elements[left] + elements[right] > k)
+            if(elements[left]+elements[right]>k)
                 right--;
             else
                 left++;

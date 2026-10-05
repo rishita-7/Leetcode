@@ -14,16 +14,16 @@ public:
     vector<int> elements;
     void inOrder(TreeNode* root){
         if(!root)
-            return ;
+            return;
         inOrder(root->left);
         elements.push_back(root->val);
         inOrder(root->right);
     }
     bool findTarget(TreeNode* root, int k) {
         inOrder(root);
-        int left=0, right =elements.size()-1;
+        int left=0,right=elements.size()-1;
         while(left<right){
-            if(elements[left]+ elements[right] == k)
+            if(elements[left]+elements[right] == k)
                 return true;
             if(elements[left] + elements[right] > k)
                 right--;

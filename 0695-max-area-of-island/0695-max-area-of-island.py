@@ -1,25 +1,25 @@
 class Solution:
-    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
-        row=len(grid)
-        col=len(grid[0])
-
-        def bfs(r, c):
-            q = deque([(r, c)])
-            grid[r][c] = 0
-            area = 1
-            while q:
-                x, y = q.popleft()
-                for dx, dy in [(1,0), (-1,0), (0,1), (0,-1)]:
-                    nx, ny = x+dx, y+dy
-                    if 0 <= nx < row and 0 <= ny < col and grid[nx][ny] == 1:
-                        grid[nx][ny] = 0
-                        area += 1
-                        q.append((nx, ny))
-            return area
-        max_area=0
-        for i in range(row):
-            for j in range (col):
-                if grid[i][j] ==1:
-                    max_area=max(max_area,bfs(i,j))
-
-        return max_area
+    def maxAreaOfIsland(self, grid: list[list[int]]) -> int:
+        m=len(grid)
+        n=len(grid[0])
+        res=0
+        s=set()
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j]== 1:
+                    s.add((i,j))
+        for x_i in range(m):
+            for y_j in range(n):
+                if(x_i,y_j) in s:
+                    q=[(x_i,y_j)]
+                    area=1
+                    s.remove((x_i,y_j))
+                    while(q):
+                        x,y=q.pop(0)
+                        for i,j in [(0,1),(0,-1),(1,0),(-1,0)]:
+                            if (x+i,y+j) in s:
+                                area+=1
+                                s.remove((x+i,y+j))
+                                q.append((x+i,y+j))
+                    res=max(res,area)
+        return res

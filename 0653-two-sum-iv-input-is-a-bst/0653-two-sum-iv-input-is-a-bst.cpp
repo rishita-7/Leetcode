@@ -11,8 +11,8 @@
  */
 class Solution {
 public:
-    stack<TreeNode*> asc;
-    stack<TreeNode*>desc;
+    stack<TreeNode* > asc;
+    stack<TreeNode*> desc;
     TreeNode* getSmall(){
         if(asc.empty())
             return nullptr;
@@ -32,8 +32,8 @@ public:
         desc.pop();
         TreeNode* leftChild=large->left;
         while(leftChild){
-                desc.push(leftChild);
-                leftChild=leftChild->right;
+            desc.push(leftChild);
+            leftChild=leftChild->right;
         }
         return large;
     }
@@ -50,12 +50,12 @@ public:
             desc.push(t);
             t=t->right;
         }
-        TreeNode* i=getSmall();
+        TreeNode* i= getSmall();
         TreeNode* j=getLarge();
         while(i && j && i->val < j->val){
-            if(i->val+ j->val ==k)
+            if((i->val+j->val)==k)
                 return true;
-            else if((i->val+j->val)<k)
+            else if((i->val + j->val)<k)
                 i=getSmall();
             else
                 j=getLarge();

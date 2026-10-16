@@ -11,16 +11,23 @@
  */
 class Solution {
 public:
-    int dfs(TreeNode* node, int curr_val){
-        if(node==nullptr){
-            return 0;
+    int total=0;
+    void fun(TreeNode* root, int curr){
+        if(!root)
+            return;
+        curr=curr*10+root->val;
+        if(!root->left && !root->right){
+            total+=curr;
+            return;
         }
-        curr_val=curr_val*10+node->val;
-        if(node->left==nullptr && node->right==nullptr)
-            return curr_val;
-        return (dfs(node->left,curr_val)+dfs(node->right,curr_val));
+        fun(root->left,curr);
+        fun(root->right,curr);
+        return;
     }
     int sumNumbers(TreeNode* root) {
-        return dfs(root,0);
+        if(! root)
+            return 0;
+        fun(root,0);
+        return total;
     }
 };

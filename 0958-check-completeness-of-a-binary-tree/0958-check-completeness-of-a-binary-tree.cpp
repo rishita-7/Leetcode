@@ -15,8 +15,8 @@ public:
         if(!root)
             return true;
         queue<TreeNode*> q;
-        q.push(root);
         bool flag=false;
+        q.push(root);
         while(!q.empty()){
             auto x=q.front();
             q.pop();

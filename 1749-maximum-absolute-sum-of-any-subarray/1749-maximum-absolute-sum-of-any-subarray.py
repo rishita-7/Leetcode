@@ -5,8 +5,8 @@ class Solution:
         for i in range(1, n):
             nums[i] = nums[i] + nums[i - 1]
         
-        maximum = max(0, max(nums))
-        minimum = min(0, min(nums))
+        maximum = max(nums)
+        minimum = min(nums)
         
         if(maximum<0):
             return abs(minimum)

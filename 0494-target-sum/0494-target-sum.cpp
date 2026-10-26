@@ -1,22 +1,25 @@
 class Solution {
 public:
-    int count=0;
-    void fun(int index,int sum,int n,int target,vector<int>&nums){
+    map<vector<int>,int> memo;
+    int fun(int index,int sum,int n,int target,vector<int>&nums){
         if(index==n){
             if(sum==target){
-                count++;
-                return;
+                return 1;
             }
             else
-                return;
+                return 0;
         }
-        fun(index+1, sum+nums[index],n,target,nums);
-        fun(index+1, sum- nums[index],n,target,nums);
-        return;
+        auto curr ={index,sum};
+        if(memo.find(curr)!=memo.end()){
+            return memo[curr];
+        }
+        int add=fun(index+1, sum+nums[index],n,target,nums);
+        int sub=fun(index+1, sum- nums[index],n,target,nums);
+        memo[curr]= add+sub;
+        return memo[curr];
     }
     int findTargetSumWays(vector<int>& nums, int target) {
         int n=nums.size();
-        fun(0,0,n,target,nums);
-        return count;
+        return fun(0,0,n,target,nums);
     }
 };

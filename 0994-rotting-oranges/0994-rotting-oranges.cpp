@@ -46,7 +46,7 @@ public:
                 }
             }
             if(flag)
-                time++;
+                time++; // increment time only if an orange rots int this iteration.
         }
         if(fresh>0)
             return -1;

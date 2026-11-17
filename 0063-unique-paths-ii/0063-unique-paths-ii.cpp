@@ -1,23 +1,31 @@
 class Solution {
 public:
-int rec(int m,int n,map<pair<int,int>,int>&d,vector<vector<int>>& obstacleGrid){
-        if(m<0 || n<0)
-            return 0;
-        if(obstacleGrid[m][n]==1)
-            return 0;
-        if(m==0 && n==0)
-            return 1;
-        if(d.find({m,n})!=d.end())
-            return d[{m,n}];
-        int B=rec(m-1,n,d,obstacleGrid);
-        int R=rec(m,n-1,d,obstacleGrid);
-        d[{m,n}]=B+R;
-        return B+R;
-    }
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
         int m=obstacleGrid.size();
         int n=obstacleGrid[0].size();
-         map<pair<int,int>,int>d;
-        return rec(m-1,n-1,d,obstacleGrid);
+        if(obstacleGrid[m-1][n-1]==1)
+            return 0;
+        if(obstacleGrid[0][0]==1)
+            return 0;
+        vector<vector<int>>paths(m,vector<int>(n,0));
+        for(int i=0;i<m;i++){
+            if(obstacleGrid[i][0]==1)
+                break;
+            paths[i][0]=1;
+        }
+        for(int j=0;j<n;j++){
+            if(obstacleGrid[0][j]==1)
+                break;
+            paths[0][j]=1;
+        }
+        for(int i=1;i<m;i++){
+            for(int j=1;j<n;j++){
+                if(obstacleGrid[i][j]==1)
+                    paths[i][j]=0;
+                else
+                    paths[i][j]=paths[i-1][j]+paths[i][j-1];
+            }
+        }
+        return paths[m-1][n-1];
     }
 };

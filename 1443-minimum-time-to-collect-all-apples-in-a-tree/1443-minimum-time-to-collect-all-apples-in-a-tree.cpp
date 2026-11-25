@@ -1,14 +1,12 @@
 class Solution {
 public:
-
-    vector<bool>hasAppleGlobal;
-    int dfs(int curr,int parent, vector<vector<int>>&adj){
+    int dfs(int curr,int parent, vector<vector<int>>&adj,vector<bool>& hasApple){
         int total=0;
         for(auto a:adj[curr]){
             if(a==parent) continue;
-            total+=dfs(a,curr,adj);
+            total+=dfs(a,curr,adj,hasApple);
         }
-        if(curr!=0 && (total>0 || hasAppleGlobal[curr]))
+        if(curr!=0 && (total>0 || hasApple[curr]))
             return total+2;
         return total;
     }
@@ -18,7 +16,6 @@ public:
             adj[e[0]].push_back(e[1]);
             adj[e[1]].push_back(e[0]);
         }
-        hasAppleGlobal=hasApple;
-        return dfs(0,-1,adj);
+        return dfs(0,-1,adj,hasApple);
     }
 };

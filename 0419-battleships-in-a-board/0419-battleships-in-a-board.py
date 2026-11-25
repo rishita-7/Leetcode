@@ -14,18 +14,18 @@ class Solution:
             for j in range(n):
 
                 if board[i][j] == 'X':
-                    stack = [(i,j)]
+                    q = [(i,j)]
                     board[i][j] = 'v'
                     count += 1
 
-                    while stack:
-                        x, y = stack.pop()
+                    while q:
+                        x, y = q.pop()
 
                         for dx, dy in directions:
                             nx, ny = x + dx, y + dy
 
                             if isValid(nx, ny) and board[nx][ny] == 'X':
-                                stack.append((nx,ny))
+                                q.append((nx,ny))
                                 board[nx][ny] = 'v'
 
         return count
